@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - TileMap
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - TileMap
+  - Water
+  - UI
+  - Head
+  - Torso
+  - RightForeArm
+  - RightTricep
+  - 'RightThigh '
+  - RightShin
+  - RightFoot
+  - LeftFoot
+  - LeftHand
+  - RightHand
+  - LeftForeArm
+  - LeftTricep
+  - LeftThigh
+  - LeftShin
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Feet.Hands
+    uniqueID: 2354967225
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
