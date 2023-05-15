@@ -7,14 +7,14 @@ public class RightFootManager : MonoBehaviour
     public float speed = 100f;
     public GameManager controlSwitcher;
     public bool isSticking = false;
-    public KeyCode unstickyKey = KeyCode.Space;
-    public Rigidbody2D FootrigidBody;
+    public KeyCode unStickyKey = KeyCode.Space;
+    public Rigidbody2D footRigidBody;
     private Vector2 savedVelocity;
     private float cooldownTimer = 0f;
     Vector2 moveDirection;
     private Vector3 screenPoint;
     private Vector3 offset;
-    public Rigidbody2D rigidbody2D_2;
+    public Rigidbody2D rigidBody2D_2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,10 @@ public class RightFootManager : MonoBehaviour
         controlSwitcher = FindObjectOfType<GameManager>();
 
         // This finds the objects Rigidbody2D and sets it to a variable
-        FootrigidBody = GetComponent<Rigidbody2D>();
+        footRigidBody = GetComponent<Rigidbody2D>();
 
         // This finds the objects Rigidbody
-        rigidbody2D_2 = GetComponent<Rigidbody2D>();
+        rigidBody2D_2 = GetComponent<Rigidbody2D>();
     }
 
     // This method is used when the left mouse button is pressed down
@@ -39,9 +39,9 @@ public class RightFootManager : MonoBehaviour
         {
             isSticking = false;
             controlSwitcher.DecrementStuckHandsFeet();
-            FootrigidBody.isKinematic = false;
-            FootrigidBody.velocity = savedVelocity;
-            FootrigidBody.freezeRotation = false;
+            footRigidBody.isKinematic = false;
+            footRigidBody.velocity = savedVelocity;
+            footRigidBody.freezeRotation = false;
             cooldownTimer = 0.5f;
         }
 
@@ -95,13 +95,13 @@ public class RightFootManager : MonoBehaviour
         else if (numStuck == 4) speed = 350f;
 
         // This code is used to ustick the hand/foot from the object
-        if (Input.GetKeyDown(unstickyKey))
+        if (Input.GetKeyDown(unStickyKey))
         {
             isSticking = false;
             controlSwitcher.DecrementStuckHandsFeet();
-            FootrigidBody.isKinematic = false;
-            FootrigidBody.velocity = savedVelocity;
-            FootrigidBody.freezeRotation = false;
+            footRigidBody.isKinematic = false;
+            footRigidBody.velocity = savedVelocity;
+            footRigidBody.freezeRotation = false;
             cooldownTimer = 0.5f;
         }
 
@@ -126,10 +126,10 @@ public class RightFootManager : MonoBehaviour
         {
             isSticking = true;
             controlSwitcher.IncrementStuckHandsFeet();
-            savedVelocity = FootrigidBody.velocity;
-            FootrigidBody.isKinematic = true;
-            FootrigidBody.velocity = Vector2.zero;
-            FootrigidBody.freezeRotation = true;
+            savedVelocity = footRigidBody.velocity;
+            footRigidBody.isKinematic = true;
+            footRigidBody.velocity = Vector2.zero;
+            footRigidBody.freezeRotation = true;
         }
     }
 }

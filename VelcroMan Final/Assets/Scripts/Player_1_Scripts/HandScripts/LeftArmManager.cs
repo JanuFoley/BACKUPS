@@ -5,28 +5,28 @@ using UnityEngine;
 public class LeftArmManager : MonoBehaviour
 {
     public float speed = 100f;
-    public GameManager controlswitcher;
+    public GameManager controlSwitcher;
     Vector2 moveDirection;
     public bool isSticking = false;
-    public KeyCode unstickyKey = KeyCode.Space;
-    public Rigidbody2D handrigidBody;
+    public KeyCode unStickyKey = KeyCode.Space;
+    public Rigidbody2D handRigidBody;
     private Vector2 savedVelocity;
     private float cooldownTimer = 0f;
     private Vector3 screenPoint;
     private Vector3 offset;
-    public Rigidbody2D rigidbody2D_2;
+    public Rigidbody2D rigidBody2D_2;
 
     // Start is called before the first frame update
     void Start()
     {
         // This sets the controlSwitcher to find the GameManger
-        controlswitcher = FindObjectOfType<GameManager>();
+        controlSwitcher = FindObjectOfType<GameManager>();
 
         // This finds the objects Rigidbody2D and sets it to a variable 
-        rigidbody2D_2 = GetComponent<Rigidbody2D>();
+        rigidBody2D_2 = GetComponent<Rigidbody2D>();
 
         // This finds the objects Rigidbody
-        handrigidBody = GetComponent<Rigidbody2D>();
+        handRigidBody = GetComponent<Rigidbody2D>();
     }
 
     // This method is used when the left mouse button is pressed down
@@ -38,10 +38,10 @@ public class LeftArmManager : MonoBehaviour
         if (isSticking)
         {
             isSticking = false;
-            controlswitcher.DecrementStuckHandsFeet();
-            handrigidBody.isKinematic = false;
-            handrigidBody.velocity = savedVelocity;
-            handrigidBody.freezeRotation = false;
+            controlSwitcher.DecrementStuckHandsFeet();
+            handRigidBody.isKinematic = false;
+            handRigidBody.velocity = savedVelocity;
+            handRigidBody.freezeRotation = false;
             cooldownTimer = 0.5f;
         }
 
@@ -63,7 +63,7 @@ public class LeftArmManager : MonoBehaviour
     {
         // This is used to find the numStuck value
         // and then assigns it to a certain preset speed
-        int numStuck = controlswitcher.GetNumStuckHandsFeet();
+        int numStuck = controlSwitcher.GetNumStuckHandsFeet();
 
         if (numStuck == 0) speed = 80f;
         else if (numStuck == 1) speed = 100f;
@@ -87,7 +87,7 @@ public class LeftArmManager : MonoBehaviour
     {
         // This is used to consistanly update the
         // numStuck value and keep track of it 
-        int numStuck = controlswitcher.GetNumStuckHandsFeet();
+        int numStuck = controlSwitcher.GetNumStuckHandsFeet();
 
         if (numStuck == 1) speed = 100f;
         else if (numStuck == 2) speed = 150f;
@@ -95,13 +95,13 @@ public class LeftArmManager : MonoBehaviour
         else if (numStuck == 4) speed = 350f;
 
         // This code is used to ustick the hand/foot from the object 
-        if (Input.GetKeyDown(unstickyKey))
+        if (Input.GetKeyDown(unStickyKey))
         {
             isSticking = false;
-            controlswitcher.DecrementStuckHandsFeet();
-            handrigidBody.isKinematic = false;
-            handrigidBody.velocity = savedVelocity;
-            handrigidBody.freezeRotation = false;
+            controlSwitcher.DecrementStuckHandsFeet();
+            handRigidBody.isKinematic = false;
+            handRigidBody.velocity = savedVelocity;
+            handRigidBody.freezeRotation = false;
             cooldownTimer = 0.5f;
         }
 
@@ -125,11 +125,11 @@ public class LeftArmManager : MonoBehaviour
         if (collision2D.gameObject.tag == "TileMap" && cooldownTimer <= 0f)
         {
             isSticking = true;
-            controlswitcher.IncrementStuckHandsFeet();
-            savedVelocity = handrigidBody.velocity;
-            handrigidBody.isKinematic = true;
-            handrigidBody.velocity = Vector2.zero;
-            handrigidBody.freezeRotation = true;
+            controlSwitcher.IncrementStuckHandsFeet();
+            savedVelocity = handRigidBody.velocity;
+            handRigidBody.isKinematic = true;
+            handRigidBody.velocity = Vector2.zero;
+            handRigidBody.freezeRotation = true;
         }
     }
 }
